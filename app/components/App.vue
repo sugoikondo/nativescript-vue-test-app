@@ -1,29 +1,24 @@
 <template>
 <page>
-  <action-bar title="{N}-Vue + Rollup"></action-bar>
+  <action-bar title="Todoリスト"></action-bar>
   <stack-layout>
-    <label>Count: {{ count }}</label>
-
-    <button @tap="count--">-1</button>
-
     <test-component style="margin-top: 40;"></test-component>
+    <todo />
   </stack-layout>
 </page>
 </template>
 
 <script>
 import TestComponent from './TestComponent.vue'
+import Todo from './Todo.vue'
 
 export default {
 
-  data() {
-    return {
-      count: 10
-    }
-  },
+  data() {},
 
   components: {
-    TestComponent
+    TestComponent,
+    Todo,
   }
 }
 </script>
