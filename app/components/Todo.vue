@@ -1,5 +1,11 @@
-<template lang="html">
-
+<template>
+<list-view :items="todos" class="list-group">
+  <template scope="item">
+      <stack-layout orientation="horizontal" class="list-group-item">
+        <label class="list-group-item-heading" :text="item.title" textWrap="true"></label>
+      </stack-layout>
+    </template>
+</list-view>
 </template>
 
 <script>
@@ -23,12 +29,23 @@ const todoLocalStorage = {
 export default {
   data() {
     return {
-      todos: [],
+      todos: [{
+          id: 1,
+          title: 'hoge',
+          completed: false
+        },
+        {
+          id: 2,
+          title: 'fuga',
+          completed: true
+        }
+      ],
       newTodoTitle: '',
     }
   },
   created: function() {
-    this.todos = todoLocalStorage.fetchTodos()
+    // TODO: 追加できるようになったらコメントアウトしよう。
+    // this.todos = todoLocalStorage.fetch()
   },
   watch: {
     todos: {

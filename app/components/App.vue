@@ -1,9 +1,8 @@
 <template>
 <page>
-  <action-bar title="Todoリスト"></action-bar>
+  <action-bar title="Todoリストが出ないんだけど"></action-bar>
   <stack-layout>
-    <test-component style="margin-top: 40;"></test-component>
-    <todo />
+    <todo></todo>
   </stack-layout>
 </page>
 </template>
@@ -13,9 +12,6 @@ import TestComponent from './TestComponent.vue'
 import Todo from './Todo.vue'
 
 export default {
-
-  data() {},
-
   components: {
     TestComponent,
     Todo,
