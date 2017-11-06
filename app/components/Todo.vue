@@ -11,7 +11,7 @@
 <script>
 import localStorage from 'nativescript-localstorage'
 
-const LOCAL_STORAGE_KEY = 'todos'
+const LOCAL_STORAGE_KEY = 'todos-localstorage'
 
 const todoLocalStorage = {
   fetch: () => {
