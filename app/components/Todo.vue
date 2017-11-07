@@ -4,7 +4,7 @@
     <list-view :items="todos" class="list-group">
       <template scope="todo">
           <grid-layout row="1" columns="*, 60">
-            <label :text="todo.title" textWrap="true" class="todo"></label>
+            <label :text="todo.title" textWrap="true" :class="{done: todo.done}" @tap="toggleDoneState(todo)"></label>
             <button col="1" text="削除" @tap="deleteTodo(todo)"></button>
           </grid-layout>
         </template>
@@ -25,9 +25,9 @@ const LOCAL_STORAGE_KEY = 'todos-localstorage'
 const todoLocalStorage = {
   fetch: () => {
     let todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
-    // todos.forEach((todo, index) => {
-    //   todo.id = index
-    // })
+    todos.forEach((todo, index) => {
+      todo.id = index
+    })
     return todos
   },
   store: (todos) => {
@@ -59,7 +59,7 @@ export default {
       this.todos.push({
         id: this.todos.length + 1,
         title: this.newTodoTitle,
-        completed: false
+        done: false
       })
       this.newTodoTitle = ''
     },
@@ -68,16 +68,21 @@ export default {
         return todo.id == targetTodo.id
       }), 1)
     },
+    toggleDoneState: function(targetTodo) {
+      const todoIndex = this.todos.findIndex(function(todo) {
+        return todo.id == targetTodo.id
+      })
+
+      this.todos[todoIndex].done = !targetTodo.done
+      console.log(this.todos[todoIndex].done)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.bg {
-    background-color: #555555;
-}
-.todo {
-    padding: 40px;
+.done {
+    text-decoration: line-through;
 }
 .footer {
     padding: 40px;
