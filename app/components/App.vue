@@ -1,9 +1,7 @@
 <template>
 <page>
   <action-bar title="Todoリスト"></action-bar>
-  <stack-layout>
-    <todo></todo>
-  </stack-layout>
+  <todo></todo>
 </page>
 </template>
 

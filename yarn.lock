@@ -2079,6 +2079,10 @@ nan@^2.3.2:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
 
+nativescript-fonticon@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/nativescript-fonticon/-/nativescript-fonticon-1.1.1.tgz#1ff981e15dbb4382efeee278739217b931c11dcc"
+
 nativescript-localstorage@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/nativescript-localstorage/-/nativescript-localstorage-1.1.5.tgz#a23363eccc041ab4a3bec306a22fe5f5d2c36100"

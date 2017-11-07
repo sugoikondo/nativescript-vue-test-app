@@ -1,11 +1,21 @@
 <template>
-<list-view :items="todos" class="list-group">
-  <template scope="item">
-      <stack-layout orientation="horizontal" class="list-group-item">
-        <label class="list-group-item-heading" :text="item.title" textWrap="true"></label>
-      </stack-layout>
-    </template>
-</list-view>
+<grid-layout rows="*, 80">
+  <scroll-view row="0">
+    <stack-layout>
+      <list-view :items="todos">
+        <template scope="item">
+          <stack-layout>
+            <label :text="item.title" textWrap="true"></label>
+          </stack-layout>
+        </template>
+      </list-view>
+    </stack-layout>
+  </scroll-view>
+  <grid-layout row="1" columns="*, 60" orientation="horizontal" class="footer">
+    <text-field col="0" hint="今日は何をしますか？" v-model="newTodoTitle"></text-field>
+    <button col="1" text="追加"></button>
+  </grid-layout>
+</grid-layout>
 </template>
 
 <script>
@@ -72,5 +82,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
+.footer {
+    margin: 24px 40px;
+}
 </style>
