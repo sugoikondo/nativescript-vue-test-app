@@ -1,19 +1,18 @@
 <template>
-<grid-layout rows="*, 80">
+<grid-layout rows="*,80">
   <scroll-view row="0">
-    <stack-layout>
-      <list-view :items="todos">
-        <template scope="item">
-          <stack-layout>
-            <label :text="item.title" textWrap="true"></label>
-          </stack-layout>
+    <list-view :items="todos" class="list-group">
+      <template scope="todo">
+          <grid-layout row="1" columns="*, 60">
+            <label :text="todo.title" textWrap="true" class="todo"></label>
+            <button col="1" text="削除" @tap="deleteTodo(todo)"></button>
+          </grid-layout>
         </template>
-      </list-view>
-    </stack-layout>
+    </list-view>
   </scroll-view>
-  <grid-layout row="1" columns="*, 60" orientation="horizontal" class="footer">
-    <text-field col="0" hint="今日は何をしますか？" v-model="newTodoTitle"></text-field>
-    <button col="1" text="追加"></button>
+  <grid-layout row="1" columns="*, 60" class="footer">
+    <text-field col="0" hint="今日は何をしますか？" v-model="newTodoTitle" return-key-type="done" @return-press="addTodo()"></text-field>
+    <button col="1" text="追加" @tap="addTodo()"></button>
   </grid-layout>
 </grid-layout>
 </template>
@@ -39,23 +38,12 @@ const todoLocalStorage = {
 export default {
   data() {
     return {
-      todos: [{
-          id: 1,
-          title: 'hoge',
-          completed: false
-        },
-        {
-          id: 2,
-          title: 'fuga',
-          completed: true
-        }
-      ],
+      todos: [],
       newTodoTitle: '',
     }
   },
   created: function() {
-    // TODO: 追加できるようになったらコメントアウトしよう。
-    // this.todos = todoLocalStorage.fetch()
+    this.todos = todoLocalStorage.fetch()
   },
   watch: {
     todos: {
@@ -67,10 +55,10 @@ export default {
   },
   methods: {
     addTodo: function() {
-      if (!this.newTodo) return
+      if (!this.newTodoTitle) return
       this.todos.push({
         id: this.todos.length + 1,
-        title: newTodoTitle,
+        title: this.newTodoTitle,
         completed: false
       })
       this.newTodoTitle = ''
@@ -83,7 +71,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bg {
+    background-color: #555555;
+}
+.todo {
+    padding: 40px;
+}
 .footer {
-    margin: 24px 40px;
+    padding: 40px;
+    background-color: #fafafa;
 }
 </style>
