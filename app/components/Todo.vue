@@ -25,9 +25,9 @@ const LOCAL_STORAGE_KEY = 'todos-localstorage'
 const todoLocalStorage = {
   fetch: () => {
     let todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
-    todos.forEach((todo, index) => {
-      todo.id = index
-    })
+    // todos.forEach((todo, index) => {
+    //   todo.id = index
+    // })
     return todos
   },
   store: (todos) => {
@@ -63,8 +63,10 @@ export default {
       })
       this.newTodoTitle = ''
     },
-    deleteTodo: function(todo) {
-      this.todos.splice(this.todos.indexOf(todo), 1)
+    deleteTodo: function(targetTodo) {
+      this.todos.splice(this.todos.findIndex(function(todo) {
+        return todo.id == targetTodo.id
+      }), 1)
     },
   }
 }
